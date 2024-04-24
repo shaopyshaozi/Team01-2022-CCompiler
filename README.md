@@ -1,57 +1,34 @@
-2022/2023 Compilers Coursework
-==============================
+# C_Compiler
 
-There are two components to the coursework:
+This repository contains all works for Imperial College EIE second year spring IAC project. Very exhuastive project! If you happen to choose this project, **remember to start early!!!!!!**
 
-- [*A C compiler*](c_compiler.md), worth 90%. The source language is pre-processed C90, and the target language is RISC-V assembly. The target environment is Ubuntu 22.04, as described in the attached [Dockerfile](Dockerfile). See [here](./c_compiler.md) for the full set of requirements and more information about the testing environment.
+The project started with the utilization of a template lexer and parser obtained from https://www.lysator.liu.se/c/ANSI-C-grammar-y.html and https://www.lysator.liu.se/c/ANSI-C-grammar-l.html. Please take a look at these two links as it helps a lot in constructing your lexer and parser.
 
-- [*Evidence of time-tracking/project management*](management.md), worth 10%. This will be assessed orally at the start of Summer term. See [here](management.md) for more information about this component.
+With lexer and parser in place, the main focus of this project is to build a proper Abstract Syntax Trees (ASTs) and Code Generation Procedure for RISC-V assembly code.
 
-Repositories
-============
+### Abstract Syntax Trees (ASTs)
+The construction of Abstract Syntax Trees are based on Object-Oriented  Programming in C++, which is not what I familiar at first (Learning it is really stressful). It involves creating `.hpp` and `.cpp`. Concepts like classes, constructors, methods, and inheritance were being utilized. By declaring a base class with some crucial methods, all other classes are inheriented from the base class. (Completing the first few classes took us like a week to figure out, but we got faster later on.)
 
-Each group gets a bare private repository. It is up to you if you want to clone the main specification, or to start from scratch.
+### Code Generation for RISC-V
+"To achieve this, a context was designed and maintained, which was passed through all the classes. This context was responsible for keeping track of crucial information, such as the stack and frame pointer, variable and parameter declarations, and other relevant details required during the code generation process." - from Anish Narain
 
-Submission
-==========
+## Test Passed
+-------------------------------------------
+We are currently passing:
+- [**array**](./compiler_tests/array) - Passes 3 out of 5 cases (array not implemented)
+- [**control_flow**](./compiler_tests/control_flow) - Passing 13 out of 13 cases
+- [**default**](./compiler_tests/default) - Passes 5 out of 5 cases
+- [**extra**](./compiler_tests/extra) - Passes 4 out of 4 cases (test for break and continue)
+- [**float**](./compiler_tests/floats) - Passes 6 out of 7 cases (pow not implemented)
+- [**functions**](./compiler_tests/functions) - Passes 8 out of 10 cases (recursive not implemented)
+- [**integer**](./compiler_tests/integer) - Passes 12 out of 12 cases
+- [**local_var**](./compiler_tests/local_var) - Passes 7 out of 7 cases
+- [**misc**](./compiler_tests/misc) - Passes 0 out of 6 testcases (Not implemented)
+- [**pointer**](./compiler_tests/pointer) - Passes 4 out of 5
+- [**programs**](./compiler_tests/programs) - Passes 2 out of 3 cases (recursive in fibonacci not done)
+- [**strings**](./compiler_tests/strings) - Passes 0 out of 5 cases (Not implemented)
+- [**struct**](./compiler_tests/struct) - Passes 0 out of 5 cases (Not implemented)
+- [**types**](./compiler_tests/types) - Passes 5 out of 5 cases
 
-The deadline for submitting your C compiler is **Friday 24 March 2023 at 23:59**. There is no deadline for the project management component; instead, this will be assessed by a short oral viva that will be organised in Summer term.
+Overall, passing **69/92** total testcases.
 
-Submission will be via GitHub (code) and Teams (commit hash), as in the labs.
-
-All submissions will be tested functionally -- there is no expectation for your compiler to *optimise* its input. Moreover, your compiler will only be tested on *valid* inputs, so you do not need to handle faulty inputs in a graceful way.
-
-Changelog
-=========
-
-* New for 2022/2023:
-
-    * Target architecture is now RISC-V rather than MIPS, in order to align with the modernised Instruction Architectures half of the module.
-    * Instead of Vagrant, Docker is now used for the testing environment (with optional VS Code support).
-    * Test scripts are now provided to check your compiler against the set of public tests, without having to write this yourself.
-    * The basic compiler framework has been improved to support command line arguments.
-    * GitHub Actions can now perform automated testing of your compiler.
-
-* New for 2021/2022:
-
-    * Various improvements to scripts for running test cases.
-
-* New for 2020/2021:
-
-    * In previous years, students were additionally required to submit a C-to-Python translator, as a "ramping up" task. This extra deliverable has been removed, as the labs provide plenty of "ramping up" practice.
-
-    * We have provided a really basic compiler that simply ignores its input and produces a fixed, valid MIPS assembly program. This should help you to get started a bit more rapidly.
-
-* New for 2019/2020:
-
-    * In previous years, students were additionally required to submit a set of testcases. This deliverable has been removed; instead, a large collection of testcases has been provided for you, as this was judged to be more useful.
-
-    * In previous years, the compiler component counted for 42.8% of the module; it now counts for 55%. It was felt that this weighting more accurately reflects the effort that students put in to building a working compiler.
-
-Acknowledgements
-================
-
-* The coursework was originally designed by [David Thomas](https://www.southampton.ac.uk/people/5z9bmb/professor-david-thomas), who lectured this module until 2017-18. It is nowadays maintained by [John Wickerson](https://johnwickerson.github.io/), to whom any feedback should be sent.
-* Thanks to [Yann Herklotz](https://yannherklotz.com/) for making various improvements to the compiler-testing scripts.
-* Thanks to [Archie Crichton](https://www.doc.ic.ac.uk/~ac11018/) for providing a basic "getting started" compiler.
-* Extra-special thanks to [James Nock](https://www.linkedin.com/in/jpnock) for overhauling the scripts for configuring the development environment, for writing detailed instructions for setting this up on various operating systems, and for creating GitHub actions capable of automatically testing compilers.
