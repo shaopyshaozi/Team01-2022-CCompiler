@@ -1,0 +1,25 @@
+#include "ast_header/ast_FunctionDefinition.hpp" // change name
+
+// Constructor implementation
+FunctionDefinition::FunctionDefinition(BasePtr xxx, BasePtr xxx, BasePtr xxx) // change name
+{
+  branches.insert(branches.end(), xxx);
+  branches.insert(branches.end(), xxx);
+  branches.insert(branches.end(), xxx);
+}
+
+// Destructor implementation
+FunctionDefinition::~FunctionDefinition()  // change name
+{
+  for (auto branch : branches) {
+        delete branch;
+    }
+}
+
+void FunctionDefinition::Print(std::ostream &steam, std::string indent) const{ // change name
+  stream << indent << "Function Definition [" << std::endl; // change name
+  branches[0]->Print(stream, indent+"   ");
+  branches[1]->Print(stream, indent+"   ");
+  branches[2]->Print(stream, indent+"   ");
+  stream << indent << "]" << std::endl;
+}

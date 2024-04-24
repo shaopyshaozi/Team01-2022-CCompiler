@@ -1,0 +1,24 @@
+#ifndef ast_functionDefinition_hpp // change here
+#define ast_functionDefinition_hpp // change here
+
+#include "ast_header/ast_Base.hpp" 
+
+
+class FunctionDefinition  //rename
+  : public Base     
+{
+// protected: we sometimes need protected for strings and int values
+public: 
+  // Constructor initialized
+  FunctionDefinition(BasePtr xxx, BasePtr xxx, BasePtr xxx); // rename
+  
+  // Destructor initialized
+  virtual ~FunctionDefinition(); //rename
+
+  // Print
+  void Print(std::ostream &stream, std::string indent) const override; //rename
+
+};
+
+#endif
+
